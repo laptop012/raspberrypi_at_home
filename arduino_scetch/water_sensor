@@ -1,0 +1,88 @@
+float water;
+//Ustanavlivaem znachenie analogovich pinov k kotorim podkluxheni datchiki
+int waterPina0 = 0;  
+int tempa0 = 0;
+int waterPina1 = 1;  
+int tempa1 = 1;
+int waterPina2 = 2;  
+int tempa2 = 2;
+int waterPina3 = 3;  
+int tempa3 = 3;
+ 
+//ustanavlivaem cifrovie vihody k kotorim podkluheni svetodiodi
+int ledpinda0 = 2;
+int ledpinda1 = 3;
+int ledpinda2 = 4;
+int ledpinda3 = 5;
+ 
+void setup() {
+  Serial.begin(9600);
+  }  
+
+  void loop() {
+//prisvaivaem znachenie peremenoy s analogovogo vhoda
+    tempa0 = analogRead(waterPina0);
+//esli datchik zalit 350-370. Esli suhoi - 0. Matchi i perevodim v udobniy format
+    int deca0 = map(analogRead(waterPina0), 0, 370, 0, 100);
+//vivodim znachenie datchikov v terminal dly scripta
+    Serial.print("SENSOR_A0\t");
+    Serial.print(deca0);
+    Serial.println();
+
+    if (deca0 > 5)
+    {
+      digitalWrite(ledpinda0, HIGH);
+    }
+    else
+    {
+      digitalWrite(ledpinda0, LOW);
+    }
+    delay(1000);
+//Delaem dly ostalnich vivodov
+    tempa1 = analogRead(waterPina1);
+    int deca1 = map(analogRead(waterPina1), 0, 370, 0, 100);
+    Serial.print("SENSOR_A1\t");
+    Serial.print(deca1);
+    Serial.println();
+    if (deca1 > 5)
+    {
+      digitalWrite(ledpinda1, HIGH);
+    }
+    else
+    {
+      digitalWrite(ledpinda1, LOW);
+    }
+    delay(1000);
+    tempa2 = analogRead(waterPina2);
+    int deca2 = map(analogRead(waterPina2), 0, 370, 0, 100);
+    Serial.print("SENSOR_A2\t");
+    Serial.print(deca2);
+    Serial.println();
+    if (deca2 > 5)
+    {
+      digitalWrite(ledpinda2, HIGH);
+    }
+    else
+    {
+      digitalWrite(ledpinda2, LOW);
+    }
+    delay(1000);
+    tempa3 = analogRead(waterPina3);
+    int deca3 = map(analogRead(waterPina3), 0, 370, 0, 100);
+    Serial.print("SENSOR_A3\t");
+    Serial.print(deca3);
+    Serial.println();
+    if (deca3 > 5)
+    {
+      digitalWrite(ledpinda3, HIGH);
+    }
+    else
+    {
+      digitalWrite(ledpinda3, LOW);
+    }
+      Serial.print("Wait 10 minutes\t");
+      Serial.print("\n");
+    delay(1000);
+//posle oprosa vsech datchikov jdem 10 min i povtoriam opros
+    delay (600000);
+    }
