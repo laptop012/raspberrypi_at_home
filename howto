@@ -4,3 +4,5 @@
 Нужно чтобы данные постояно принимались и обрабатывались.
 
 2. get_balance.sh - скрипт проверки баланса на счету.
+
+3. git remote add origin git@github.com:laptop012/raspberrypi_at_home.git
