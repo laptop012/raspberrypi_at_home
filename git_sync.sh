@@ -1,8 +1,8 @@
 #!/bin/bash -x
 
-DATE=`date +%Y-%m-%d:%H:%M:%S`
+DATE=`date +%Y_%m_%d%H%M%S`
 git status
 git add .
-git commit -m "$DATE_commit"
+git commit -m "four_commit"
 git status
 git push -u origin master
