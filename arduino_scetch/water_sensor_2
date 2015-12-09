@@ -1,0 +1,101 @@
+float water;
+// Устанавливаем название аналоговых пинов, к которым подключены датчики
+int waterPina0 = 0;  
+int tempa0 = 0;
+int waterPina1 = 1;  
+int tempa1 = 1;
+int waterPina2 = 2;  
+int tempa2 = 2;
+int waterPina3 = 3;  
+int tempa3 = 3;
+ 
+// Устанавливаем цифровые выходы для подключения светодиодов
+int ledpinda0 = 2;
+int ledpinda1 = 3;
+int ledpinda2 = 4;
+int ledpinda3 = 5;
+ 
+void setup() {
+  Serial.begin(9600);
+  }  
+ 
+  void loop() {
+    //присваиваем значение переменной с аналогово входа
+    tempa0 = analogRead(waterPina0);
+    // если датчик залит 350-370, если сухой 0. Матчим ити значения и переводим в удобный формат
+    int deca0 = map(analogRead(waterPina0), 0, 370, 0, 100);
+    // Если сработал датчик (значение стало больше 5, зажигаем светодиод. Если меньше, то тушим светодиод)
+    if (deca0 > 10)
+    {
+      digitalWrite(ledpinda0, HIGH);
+      Serial.print("WARNING_SENSOR_A0_WET\t");
+      Serial.print(deca0);
+      Serial.println();
+    }
+    else
+    {
+      // Выводим значение датчиков в терминал для скрипта.
+      digitalWrite(ledpinda0, LOW);
+      Serial.print("CLEAR_SENSOR_A0_OK\t");
+      Serial.print(deca0);
+      Serial.println();
+    }
+    delay(1000);
+    // Делаем тоже самое, для остальных выводов
+    tempa1 = analogRead(waterPina1);
+    int deca1 = map(analogRead(waterPina1), 0, 370, 0, 100);
+    if (deca1 > 10)
+    {
+      digitalWrite(ledpinda1, HIGH);
+      Serial.print("WARNING_SENSOR_A1_WET\t");
+      Serial.print(deca1);
+      Serial.println();
+    }
+    else
+    {
+      digitalWrite(ledpinda1, LOW);
+      Serial.print("CLEAR_SENSOR_A1_OK\t");
+      Serial.print(deca1);
+      Serial.println();
+    }
+    delay(1000);
+    tempa2 = analogRead(waterPina2);
+    int deca2 = map(analogRead(waterPina2), 0, 370, 0, 100);
+    if (deca2 > 10)
+    {
+      digitalWrite(ledpinda2, HIGH);
+      Serial.print("WARNING_SENSOR_A2_WET\t");
+      Serial.print(deca2);
+      Serial.println();
+    }
+    else
+    {
+      digitalWrite(ledpinda2, LOW);
+      Serial.print("CLEAR_SENSOR_A2_OK\t");
+      Serial.print(deca2);
+      Serial.println();
+    }
+    delay(1000);
+    tempa3 = analogRead(waterPina3);
+    int deca3 = map(analogRead(waterPina3), 0, 370, 0, 100);
+    if (deca3 > 10)
+    {
+      digitalWrite(ledpinda3, HIGH);
+      Serial.print("WARNING_SENSOR_A3_WET\t");
+      Serial.print(deca3);
+      Serial.println();
+    }
+    else
+    {
+      digitalWrite(ledpinda3, LOW);
+      Serial.print("CLEAR_SENSOR_A3_OK\t");
+      Serial.print(deca3);
+      Serial.println();
+    }
+      Serial.print("Wait 2 minutes\t");
+      Serial.print("\n");
+    delay(1000);
+    // После опроса датчиков, ждем 2 минуты и повторяем опрос заново
+    delay (120000);
+    }
+
