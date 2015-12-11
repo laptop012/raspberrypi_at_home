@@ -6,3 +6,8 @@
 2. get_balance.sh - скрипт проверки баланса на счету.
 
 3. git remote add origin git@github.com:laptop012/raspberrypi_at_home.git
+
+4. send_sms - скрипты запроса данных с ардуино. И отправки смс, если что не так.
+Так же, выполняется проверка баланса на счете.
+
+5. syn_backup - содержит скрипт синхронизации с github и скрипт еженедельного backupa.
