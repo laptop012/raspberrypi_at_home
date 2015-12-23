@@ -5,6 +5,8 @@ DIRLOG="/etc/scripts/log/balance"
 ps aux | grep ACM | grep -v grep
 if [ $? -eq 0 ]; then
   echo "ARDUINO SUCCESS_$DATE" > $DIRLOG/arduino_status.log
+exit
 else
   echo "ARDUINO FAIL_$DATE"  > $DIRLOG/arduino_status.log
+exit
 fi

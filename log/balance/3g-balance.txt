@@ -1,13 +1,13 @@
-From Balance@gnokii Fri Dec 11 11:30:21 2015
-Date: Fri, 11 Dec 2015 11:30:21 +0300 (MSK)
+From Balance@gnokii Mon Dec 21 21:50:47 2015
+Date: Mon, 21 Dec 2015 21:50:47 +0300 (MSK)
 From: Balance@gnokii
 X-GSM-SMSC: +79262000331
 X-GSM-Status: Unread
 X-GSM-Memory: SM
 X-GSM-Location: 0
-Subject: 996.93?.
+Subject: 836.93р.
 
-996.93?.
+836.93р.
 
 
-Signal: 4
+Signal: 16
