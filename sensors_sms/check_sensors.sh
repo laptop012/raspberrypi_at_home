@@ -4,26 +4,24 @@ DATE=`date +%Y%m%d`
 WATERFILE="_wetsensors.log"
 SFILE="$DATE$WATERFILE"
 DIR="/etc/scripts/sensors_sms"
-while true
-do
-# Chitaem dannie s com porta
-echo -n > /tmp/serial
-sleep 2
-echo -n check > /dev/ttyACM0
-sleep 30
-cat /tmp/serial | grep WET
-    if [ $? == 0 ]; then
-# zapisivaem ih v fail
-    cat /tmp/serial | grep -a WET > $DIR/$SFILE
-    echo "CREATE_FILE"
-    touch $DIR/SMS_$SFILE
-# sozdaem pustoy fail i zapuskaem script_sms
-    $DIR/script_sms.sh $DIR/SMS_$SFILE
-    exit
-# Если данные не получены, то считаем, что все хорошо и ничего не делаем
-    else
-    sleep 5
-    echo "VSE_HOROSHO"
+DIRLOG="/etc/scripts/log/sensors"
+# Chitaem dannie is ARDUINO
+rm $DIRLOG/sensors.html
+sleep 1
+curl http://192.168.88.177 > $DIRLOG/sensors.html
+    cat $DIRLOG/sensors.html | grep WARNING
+	if [ $? == 0 ]; then
+	cat $DIRLOG/sensors.html | grep -a WARNING> $DIR/$SFILE
+	echo "CREATE_FILE"
+	touch $DIR/SMS_$SFILE
+	# sozdaem pustoy fail i zapuskaem script_sms
+	$DIR/script_sms.sh $DIR/SMS_$SFILE
+	exit
+# Esli fail pustoy, to vse OK
+	else
+	sleep 5
+	echo "VSE_HOROSHO"
+	exit
 exit
 fi
 done
