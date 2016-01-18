@@ -9,11 +9,6 @@ DIRLOG="/etc/scripts/log/sensors"
 rm $DIRLOG/sensors.html
 sleep 1
 curl http://192.168.88.177 > $DIRLOG/sensors.html
-# UDalyiem html razmetku iz faila
-sed -i -e :a -e 's/<[^>]*>//g;/</N;//ba;s/^[ \t]*//;s/[ \t]*$//' $DIRLOG/sensors.html
-sed -i 's/'"$(printf '\015')"'$//g' $DIRLOG/sensors.html
-sed -i '/^$/d' $DIRLOG/sensors.html
-# Check file on Warning
     cat $DIRLOG/sensors.html | grep WARNING
 	if [ $? == 0 ]; then
 	cat $DIRLOG/sensors.html | grep -a WARNING> $DIR/$SFILE
